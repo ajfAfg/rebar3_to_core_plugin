@@ -25,7 +25,10 @@ init(State) ->
     {ok, rebar_state:add_provider(State, Provider)}.
 
 -spec do(rebar_state:t()) -> {ok, rebar_state:t()} | {error, string()}.
-do(State) -> rebar_prv_compile:do(State).
+do(State) ->
+    ErlOpts = rebar_state:get(State, erl_opts, []),
+    NewState = rebar_state:set(State, erl_opts, [to_core | ErlOpts]),
+    rebar_prv_compile:do(NewState).
 
 -spec format_error(any()) -> iolist().
 format_error(Reason) -> rebar_prv_compile:format_error(Reason).
