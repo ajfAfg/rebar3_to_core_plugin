@@ -20,8 +20,9 @@ init(State) ->
                           {opts, []},                   % list of options understood by the plugin
                           {short_desc, "A rebar plugin"},
                           {desc, "A rebar plugin"}]),
-    NewState = rebar_state:set(State, erl_opts, to_core),
-    {ok, rebar_state:add_provider(NewState, Provider)}.
+    % NewState = rebar_state:set(State, erl_opts, to_core),
+    % {ok, rebar_state:add_provider(NewState, Provider)}.
+    {ok, rebar_state:add_provider(State, Provider)}.
 
 -spec do(rebar_state:t()) -> {ok, rebar_state:t()} | {error, string()}.
 do(State) -> rebar_prv_compile:do(State).
