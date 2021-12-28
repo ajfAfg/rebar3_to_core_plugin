@@ -26,11 +26,60 @@ init(State) ->
 
 -spec do(rebar_state:t()) -> {ok, rebar_state:t()} | {error, string()}.
 do(State) ->
-    ErlOpts = rebar_state:get(State, erl_opts, []),
-    NewState = rebar_state:set(State, erl_opts, [to_core | ErlOpts]),
+    % ErlOpts = rebar_state:get(State, erl_opts, []),
+    % NewState = rebar_state:set(State, erl_opts, [to_core | ErlOpts]),
+    NewState = set_erl_opts(State),
     io:format("State:~n~p~n", [State]),
     io:format("NewState:~n~p~n", [NewState]),
     rebar_prv_compile:do(NewState).
 
 -spec format_error(any()) -> iolist().
 format_error(Reason) -> rebar_prv_compile:format_error(Reason).
+
+%% ===================================================================
+%% Private API
+%% ===================================================================
+set_erl_opts({state_t,
+              Dir,
+              Opts,
+              CodePaths,
+              Default,
+              EscriptPath,
+              Lock,
+              CurrentProfiles,
+              Namespace,
+              CommandArgs,
+              CommandParsedArgs,
+              CurrentApp,
+              ProjectApps,
+              DepsToBuild,
+              AllPluginDeps,
+              AllDeps,
+              Compilers,
+              ProjectBuilders,
+              Resources,
+              Providers,
+              AllowProviderOverrides}) ->
+    NewOpts = dict:append(erl_opts, to_core, Opts),
+    NewDefault = dict:append(erl_opts, to_core, Default),
+    {state_t,
+     Dir,
+     NewOpts,
+     CodePaths,
+     NewDefault,
+     EscriptPath,
+     Lock,
+     CurrentProfiles,
+     Namespace,
+     CommandArgs,
+     CommandParsedArgs,
+     CurrentApp,
+     ProjectApps,
+     DepsToBuild,
+     AllPluginDeps,
+     AllDeps,
+     Compilers,
+     ProjectBuilders,
+     Resources,
+     Providers,
+     AllowProviderOverrides}.
