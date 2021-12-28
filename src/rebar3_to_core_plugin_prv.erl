@@ -28,6 +28,8 @@ init(State) ->
 do(State) ->
     ErlOpts = rebar_state:get(State, erl_opts, []),
     NewState = rebar_state:set(State, erl_opts, [to_core | ErlOpts]),
+    io:format("State:~n~p~n", [State]),
+    io:format("NewState:~n~p~n", [NewState]),
     rebar_prv_compile:do(NewState).
 
 -spec format_error(any()) -> iolist().
