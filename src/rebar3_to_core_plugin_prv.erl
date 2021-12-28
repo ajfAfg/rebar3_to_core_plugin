@@ -64,8 +64,8 @@ set_erl_opts({state_t,
     % NewCodePaths = dict:append(erl_opts, to_core, CodePaths),
     % NewDefault = dict:append(erl_opts, to_core, Default),
     F = fun(AppInfo) ->
-           ErlOpts = project_apps:get(AppInfo, erl_opts, []),
-           project_apps:set(AppInfo, erl_opts, ErlOpts)
+           ErlOpts = rebar_app_info:get(AppInfo, erl_opts, []),
+           rebar_app_info:set(AppInfo, erl_opts, ErlOpts)
         end,
     NewProjectApps = lists:map(F, ProjectApps),
     {state_t,
