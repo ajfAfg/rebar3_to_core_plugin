@@ -65,7 +65,7 @@ set_erl_opts({state_t,
     % NewDefault = dict:append(erl_opts, to_core, Default),
     F = fun(AppInfo) ->
            ErlOpts = rebar_app_info:get(AppInfo, erl_opts, []),
-           rebar_app_info:set(AppInfo, erl_opts, ErlOpts)
+           rebar_app_info:set(AppInfo, erl_opts, [to_core | ErlOpts])
         end,
     NewProjectApps = lists:map(F, ProjectApps),
     {state_t,
