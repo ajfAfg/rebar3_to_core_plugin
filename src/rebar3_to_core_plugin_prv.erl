@@ -2,8 +2,6 @@
 
 -export([init/1, do/1, format_error/1]).
 
--include_lib("providers/include/providers.hrl").
-
 -define(PROVIDER, rebar3_to_core_plugin).
 -define(DEPS, [app_discovery]).
 
@@ -22,10 +20,9 @@ init(State) ->
                           {opts, []},                   % list of options understood by the plugin
                           {short_desc, "A rebar plugin"},
                           {desc, "A rebar plugin"}]),
-    NewState = rebar_state:set(State, erl_opts, to_core),
-    {ok, rebar_state:add_provider(NewState, Provider)}.
-
-    % {ok, rebar_state:add_provider(State, Provider)}.
+    % NewState = rebar_state:set(State, erl_opts, to_core),
+    % {ok, rebar_state:add_provider(NewState, Provider)}.
+    {ok, rebar_state:add_provider(State, Provider)}.
 
 -spec do(rebar_state:t()) -> {ok, rebar_state:t()} | {error, string()}.
 do(State) -> rebar_prv_compile:do(State).
