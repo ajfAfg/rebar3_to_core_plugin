@@ -1,26 +1,28 @@
-rebar3_to_core_plugin
-=====
+# rebar3_to_core_plugin
 
-A rebar plugin
+A rebar plugin for compiling into Core Erlang
 
-Build
------
+## Build
 
-    $ rebar3 compile
+```bash
+$ rebar3 compile
+```
 
-Use
----
+## Use
 
 Add the plugin to your rebar config:
 
-    {plugins, [
-        {rebar3_to_core_plugin, {git, "https://host/user/rebar3_to_core_plugin.git", {tag, "0.1.0"}}}
-    ]}.
+```erlang
+{plugins, [
+    {rebar3_to_core_plugin, {git, "https://github.com/ajfAfg/rebar3_to_core_plugin.git", {branch, "main"}}}
+]}.
+```
 
 Then just call your plugin directly in an existing application:
 
-
-    $ rebar3 rebar3_to_core_plugin
-    ===> Fetching rebar3_to_core_plugin
-    ===> Compiling rebar3_to_core_plugin
-    <Plugin Output>
+```bash
+$ rebar3 to_core
+===> Fetching rebar3_to_core_plugin
+===> Compiling rebar3_to_core_plugin
+<Plugin Output>
+```
