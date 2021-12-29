@@ -26,3 +26,7 @@ $ rebar3 to_core
 ===> Compiling rebar3_to_core_plugin
 <Plugin Output>
 ```
+
+## License
+
+This source code is released under the MIT License.
