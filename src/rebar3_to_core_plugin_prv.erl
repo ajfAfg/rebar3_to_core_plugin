@@ -18,8 +18,8 @@ init(State) ->
                           {deps, ?DEPS},                % The list of dependencies
                           {example, "rebar3 to_core"}, % How to use the plugin
                           {opts, []},                   % list of options understood by the plugin
-                          {short_desc, "A rebar plugin"},
-                          {desc, "A rebar plugin"}]),
+                          {short_desc, "A rebar plugin for compiling into Core Erlang"},
+                          {desc, "A rebar plugin for compiling into Core Erlang"}]),
     {ok, rebar_state:add_provider(State, Provider)}.
 
 -spec do(rebar_state:t()) -> {ok, rebar_state:t()} | {error, string()}.
