@@ -2,7 +2,7 @@
 
 -export([init/1, do/1, format_error/1]).
 
--define(PROVIDER, rebar3_to_core_plugin).
+-define(PROVIDER, to_core).
 -define(DEPS, [app_discovery]).
 
 %% ===================================================================
@@ -16,7 +16,7 @@ init(State) ->
                           {bare,
                            true},                 % The task can be run by the user, always true
                           {deps, ?DEPS},                % The list of dependencies
-                          {example, "rebar3 rebar3_to_core_plugin"}, % How to use the plugin
+                          {example, "rebar3 to_core"}, % How to use the plugin
                           {opts, []},                   % list of options understood by the plugin
                           {short_desc, "A rebar plugin"},
                           {desc, "A rebar plugin"}]),

@@ -1,14 +1,10 @@
-{application, rebar3_to_core_plugin,
+{application,
+ rebar3_to_core_plugin,
  [{description, "A rebar plugin"},
   {vsn, "0.1.0"},
   {registered, []},
-  {applications,
-   [kernel,
-    stdlib
-   ]},
-  {env,[]},
+  {applications, [kernel, stdlib]},
+  {env, []},
   {modules, []},
-
-  {licenses, ["Apache 2.0"]},
-  {links, []}
- ]}.
+  {licenses, ["MIT"]},
+  {links, []}]}.
