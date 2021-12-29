@@ -29,6 +29,17 @@ do(State) ->
     % ErlOpts = rebar_state:get(State, erl_opts, []),
     % NewState = rebar_state:set(State, erl_opts, [to_core | ErlOpts]),
     NewState = set_erl_opts(State),
+    NewState =
+        begin
+            UpdateErlOpts =
+                fun(AppInfo) ->
+                   ErlOpts = rebar_app_info:get(AppInfo, erl_opts, []),
+                   rebar_app_info:set(AppInfo, erl_opts, [to_core | ErlOpts])
+                end,
+            NewProjectApps = lists:map(UpdateErlOpts, rebar_state:project_apps(State)),
+            F = fun(App, State) -> rebar_state:project_apps(State, App) end,
+            lists:foldl(F, State, NewProjectApps)
+        end,
     io:format("State:~n~p~n", [State]),
     io:format("NewState:~n~p~n", [NewState]),
     rebar_prv_compile:do(NewState).
